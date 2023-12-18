@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Study</h1>
+        <a class="nav-link" href="{% url 'add_study' %}">Study Track</a>
+        <a class="nav-link" href="{% url 'weekly_add' %}">Week Track</a>
+
+
+{#        Create a table#}
+        <table>
+            <tr>
+                <th>Course</th>
+                <th>topic</th>
+                <th>Hours Studied</th>
+                <th>Course</th>
+                <th>Date</th>
+            </tr>
+            {% for i in study_data %}
+            <tr>
+                <td>{{ i.name }}</td>
+                <td>{{ i.hours }}</td>
+                <td>{{ i.link_to_course }}</td>
+                <td>{{ i.date }}</td>
+            </tr>
+        </table>
+    {% endfor %}
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Hours </th>
+                <th>Reflections</th>
+            </tr>
+            {% for i in weeklt_data %}
+            <tr>
+                <td>{{ i.date }}</td>
+                <td>{{ i.hours_studied }}</td>
+                <td>{{ i.reflexions }}</td>
+            </tr>
+        </table>
+    {% endfor %}
+
+
+{% endblock %}
+</body>
+</html>

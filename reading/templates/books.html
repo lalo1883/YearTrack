@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Books</h1>
+
+<a class="nav-link" href="{% url 'add' %}">Add Book</a>
+<a class="nav-link" href="{% url 'weekly' %}">Weekly report</a>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Topic</th>
+            <th>Author</th>
+            <th>Status</th>
+            <th>Rating</th>
+            <th>Pages</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{ i.name }}</td>
+            <td>{{ i.topic }}</td>
+            <td>{{ i.author }}</td>
+            <td>{{ i.status }}</td>
+            <td>{{ i.rating }}</td>
+            <td>{{ i.pages }}</td>
+        </tr>
+    {% endfor %}
+
+    <div>
+    {% for j in week_data %}
+    <table>
+        <tr>
+            <th>Week</th>
+            <th>Pages read</th>
+            <th>Hours</th>
+            <th>Reflections</th>
+        </tr>
+        <tr>
+            <td>{{ j.id }}</td>
+            <td>{{ j.pages_read }}</td>
+            <td>{{ j.hours_read }}</td>
+            <td>{{ j.reflexions }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    <div>
+{% endblock %}
+</body>
+</html>

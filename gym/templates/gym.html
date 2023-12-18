@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'base.html' %}
+
+{% block title %}GYM{% endblock %}
+
+{% block content %}
+  <h1>GYM</h1>
+  <form action="" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Submit">
+  </form>
+  <main>
+    <table>
+        <tr>
+            <th>Days you trained</th>
+            <th>Hours you trained</th>
+            <th>Weight at Sunday</th>
+            <th>Week of training</th>
+        </tr>
+        {% for data_type in data %}
+            <tr>
+                <td>{{ data_type.trained_days }}</td>
+                <td>{{ data_type.trained_hours }}</td>
+                <td>{{ data_type.weight }}</td>
+                <td>{{ data_type.week_number }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <h4>Total hours trained this year: {{ total_hours }}</h4>
+    <h4>Total days trained this year: {{ total_days }}</h4>
+    {# Uncomment the line below when you have the variable available in your context #}
+    {# <h4>Average hours trained 1st month {{ average_hours_1_month }}</h4> #}
+  </main>
+{% endblock %}
+</body>
+</html>
