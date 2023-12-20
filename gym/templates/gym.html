@@ -11,28 +11,37 @@
 
 {% block content %}
   <h1>GYM</h1>
-  <form action="" method="post">
+  <form action="{% url 'gym' %}" method="post">
       {% csrf_token %}
       {{ form.as_p }}
       <input type="submit" value="Submit">
   </form>
   <main>
-    <table>
+<table>
+    <tr>
+        <th>Days you trained</th>
+        <th>Hours you trained</th>
+        <th>Weight at Sunday</th>
+        <th>Week of training</th>
+        <th>Action</th>  <!-- New column for the delete button -->
+    </tr>
+    {% for data_type in data %}
         <tr>
-            <th>Days you trained</th>
-            <th>Hours you trained</th>
-            <th>Weight at Sunday</th>
-            <th>Week of training</th>
+            <td>{{ data_type.trained_days }}</td>
+            <td>{{ data_type.trained_hours }}</td>
+            <td>{{ data_type.weight }}</td>
+            <td>{{ data_type.week_number }}</td>
+            <td>
+                <form action="{% url 'delete_gym_entry' data_type.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="entry_id" value="{{ data_type.id }}">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
         </tr>
-        {% for data_type in data %}
-            <tr>
-                <td>{{ data_type.trained_days }}</td>
-                <td>{{ data_type.trained_hours }}</td>
-                <td>{{ data_type.weight }}</td>
-                <td>{{ data_type.week_number }}</td>
-            </tr>
-        {% endfor %}
-    </table>
+    {% endfor %}
+</table>
+
     <h4>Total hours trained this year: {{ total_hours }}</h4>
     <h4>Total days trained this year: {{ total_days }}</h4>
     {# Uncomment the line below when you have the variable available in your context #}

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import gym_track
 from .forms import gym_track_form
 
@@ -23,4 +23,15 @@ def gym_track_view(request):
             form.save()
     context = {'form': form, 'data': data, 'total_hours': total_hours, 'total_days': total_days}
 
+    if request.method == 'DELETE':
+        form = gym_track_form(request.DELETE)
+        if form.is_valid():
+            form.delete()
+
     return render(request, 'gym.html', context)
+
+
+def delete_gym_entry(request, entry_id):
+    entry = get_object_or_404(gym_track, id=entry_id)
+    entry.delete()
+    return redirect('gym')
