@@ -27,3 +27,7 @@ def weekly (request):
             form_w.save()
     context = {'form_w': form_w}
     return render(request, template_name='weekly.html', context=context)
+
+
+def main(request):
+    return render(request, 'index.html')

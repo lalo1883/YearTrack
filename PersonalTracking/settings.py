@@ -61,6 +61,7 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'gym', 'templates'),
             os.path.join(BASE_DIR, 'reading', 'templates'),
             os.path.join(BASE_DIR, 'study', 'templates'),
+            os.path.join(BASE_DIR, 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {

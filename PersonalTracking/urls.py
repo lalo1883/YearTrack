@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView as templ
 from gym import views
 
 urlpatterns = [
@@ -22,4 +23,5 @@ urlpatterns = [
     path('reading/', include('reading.urls')),
     path('study/', include('study.urls')),
     path('admin/', admin.site.urls),
+    path('', templ.as_view(template_name='index.html'), name='templ'),
 ]
