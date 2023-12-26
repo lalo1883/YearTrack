@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Courses, weekly_track
 from .forms import CoursesForm, weekly_trackForm
 
@@ -31,3 +31,15 @@ def weekly_add(request):
             form.save()
     context = {'form': form}
     return render(request, 'week_add.html', context)
+
+
+
+def remove_course(request, entry_id):
+    entry = get_object_or_404(Courses, id=entry_id)
+    entry.delete()
+    return redirect('study')
+
+def remove_reflections(request, entry_id):
+    entry = get_object_or_404(weekly_track, id=entry_id)
+    entry.delete()
+    return redirect('study')

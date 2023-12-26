@@ -30,6 +30,13 @@
             <td>{{ i.status }}</td>
             <td>{{ i.rating }}</td>
             <td>{{ i.pages }}</td>
+            <td>
+            <form action="{% url 'remove_book' i.id %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="entry_id" value="{{ i.id }}">
+                <input type="submit" value="Delete">
+            </form>
+            </td>
         </tr>
     {% endfor %}
 
@@ -47,6 +54,12 @@
             <td>{{ j.pages_read }}</td>
             <td>{{ j.hours_read }}</td>
             <td>{{ j.reflexions }}</td>
+            <td>
+                <form action="{% url 'remove_description' j.id %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="entry_id" value="{{ j.id }}">
+                <input type="submit" value="Delete">
+            </td>
         </tr>
     {% endfor %}
     </table>

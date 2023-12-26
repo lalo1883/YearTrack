@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Books, weekly_track
 from .forms import BooksForm, weekly_trackForm
 
@@ -19,6 +19,12 @@ def add(request):
     return render(request, 'add.html', context)
 
 
+def remove_book(request, entry_id):
+    entry = get_object_or_404(Books, id=entry_id)
+    entry.delete()
+    return redirect('books')
+
+
 def weekly (request):
     form_w = weekly_trackForm()
     if request.method == 'POST':
@@ -27,6 +33,11 @@ def weekly (request):
             form_w.save()
     context = {'form_w': form_w}
     return render(request, template_name='weekly.html', context=context)
+
+def remove_description(request, entry_id):
+    entry = get_object_or_404(weekly_track, id=entry_id)
+    entry.delete()
+    return redirect('books')
 
 
 def main(request):

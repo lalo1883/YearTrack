@@ -14,6 +14,10 @@ class Courses(models.Model):
     def __str__(self):
         return self.name
 
+    @classmethod
+    def get_all_or_404(cls, id):
+        pass
+
 
 class weekly_track(models.Model):
     hours_studied = models.FloatField()

@@ -10,7 +10,7 @@
 
 {% block content %}
     <h1>Study</h1>
-        <a class="nav-link" href="{% url 'add_study' %}">Study Track</a>
+        <a class="nav-link" href="{% url 'add_study' %}">Add Course</a>
         <a class="nav-link" href="{% url 'weekly_add' %}">Week Track</a>
 
 
@@ -29,6 +29,12 @@
                 <td>{{ i.hours }}</td>
                 <td>{{ i.link_to_course }}</td>
                 <td>{{ i.date }}</td>
+                <td>
+                    <form action="{% url 'remove_course' i.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="entry_id" value="{{ i.id }}">
+                        <input type="submit" value="Delete">
+                </td>
             </tr>
         </table>
     {% endfor %}
@@ -43,6 +49,12 @@
                 <td>{{ i.date }}</td>
                 <td>{{ i.hours_studied }}</td>
                 <td>{{ i.reflexions }}</td>
+                <td>
+                    <form action="{% url 'remove_reflections' i.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="entry_id" value="{{ i.id }}">
+                        <input type="submit" value="Delete">
+                </td>
             </tr>
         </table>
     {% endfor %}

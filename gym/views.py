@@ -16,17 +16,16 @@ def gym_track_view(request):
         total_hours += i.trained_hours
         total_days += i.trained_days
 
-
     if request.method == 'POST':
         form = gym_track_form(request.POST)
         if form.is_valid():
             form.save()
     context = {'form': form, 'data': data, 'total_hours': total_hours, 'total_days': total_days}
 
-    if request.method == 'DELETE':
-        form = gym_track_form(request.DELETE)
-        if form.is_valid():
-            form.delete()
+    # if request.method == 'DELETE':
+    #     form = gym_track_form(request.DELETE)
+    #     if form.is_valid():
+    #         form.delete()
 
     return render(request, 'gym.html', context)
 
