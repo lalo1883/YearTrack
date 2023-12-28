@@ -19,8 +19,9 @@
         <table>
             <tr>
                 <th>Course</th>
-                <th>topic</th>
-                <th>Hours Studied</th>
+                <th>Hours</th>
+                <th>Link to course</th>
+                <th>Topic</th>
                 <th>Course</th>
                 <th>Date</th>
             </tr>
@@ -29,6 +30,7 @@
                 <td>{{ i.name }}</td>
                 <td>{{ i.hours }}</td>
                 <td>{{ i.link_to_course }}</td>
+                <td>{{ i.topic }}</td>
                 <td>{{ i.date }}</td>
                 <td>
                     <form action="{% url 'remove_course' i.id %}" method="post">
